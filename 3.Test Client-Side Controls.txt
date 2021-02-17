@@ -1,0 +1,67 @@
+Test Client-Side Controls
+
+1.Test Transmission of Data Via the Client:
+
+ Locate all instances within the application where hidden form fi elds,
+ cookies, and URL parameters are apparently being used to transmit
+ data via the client.
+ 
+ Modify the item’s value in ways that are relevant to its role in the
+ application’s functionality.
+
+ If the application uses the ASP.NET ViewState , test to confi rm whether
+ this can be tampered with or whether it contains any sensitive information.
+----------------------------------------------------------------------------------------------
+2.Test Client-Side Controls Over User Input:
+
+ Identify any cases where client-side controls such as length limits and
+ JavaScript checks are used to validate user input before it is submitted
+ to the server. These controls can be bypassed easily, because you can
+ send arbitrary requests to the server. 
+ example:
+
+ <form action=”order.asp” onsubmit=”return Validate(this)”>
+ <input maxlength=”3” name=”quantity”>
+
+ 3.Test each affected input fi eld in turn by submitting input
+
+ HTML form to identify any disabled elements, such as
+ grayed-out submit buttons. For example:
+ <input disabled=”true” name=”product”>
+------------------------------------------------------------------------------------------------------
+
+ 4.Test Browser Extension Components:
+
+  Understand the Client Application’s Operation
+  Decompile the Client
+  Attach a Debugger
+  Test ActiveX controls
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

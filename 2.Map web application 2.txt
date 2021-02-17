@@ -1,0 +1,62 @@
+Map the Application
+
+1.Explore Visible Content
+Configure your browser to use your favorite
+integrated proxy/spidering tool.
+    EX:Burp and WebScarab
+
+if you find it useful, configure your browser to
+ use an extension such as IEWatch to monitor and
+analyze the HTTP and HTML content being processed
+by the browser.
+
+visiting every link and URL, submitting every
+form, and proceeding through all multistep
+functions to completion.
+
+ 
+Try browsing with JavaScript enabled and
+disabled, and with cookies enabled and disabled.
+
+If the application uses authentication,
+and you have or can create a login account.
+
+------------------------------------------------------------------
+2.Consult Public Resources:
+
+ Use Internet search engines and archives (such as the Wayback Machine)
+ to identify what content they have indexed and stored for your target
+ application.
+
+-------------------------------------------------------
+3.Discover Hidden Content:
+
+ handles requests for nonexistent items.
+ Make some manual requests for known valid and invalid resources,
+ and compare the serverâ€™s responses to establish an easy way to identify
+ when an item does not exist.
+
+-------------------------------------------------------------------------------------
+4.Discover Default Content:
+
+ Run Nikto against the web server to detect any
+ default or well-known content that is present.
+ 
+ Use Niktoâ€™s options to maximize its effective-ness.
+ For example, you can use the â€“root option to specify
+ a directory
+------------------------------------------------------------------
+5.Enumerate Identifi er-Specifi ed Functions:
+
+ Identify any instances where specifi c application functions
+ are accessed bypassing an identifi er of the function
+ in a request parameter (for example,
+ /admin.jsp?action=editUser or /main.php?func=A21 )
+---------------------------------------------------------------------------
+6.Test for Debug Parameters:
+
+ Choose one or more application pages or functions where hidden debug
+ parameters (such as debug=true ) may be implemented. These are most
+ likely to appear in key functionality such as login, search, and fi le upload
+ or download.
+----------------------------------------------------------------------------------------------

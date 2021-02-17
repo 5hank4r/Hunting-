@@ -1,0 +1,22 @@
+Test for Shared Hosting Vulnerabilities
+
+1.Test Segregation in Shared Infrastructures:
+
+ If the application is hosted in a shared infrastructure, examine the access
+ mechanisms provided for customers of the shared environment to update
+ and manage their content and functionality.
+
+ If you can achieve command execution, SQL injection, or arbitrary fi le
+ access within one application, investigate carefully whether this provides
+ any way to escalate your attack to target other applications
+
+------------------------------------------------------------------------------------
+2.Test Segregation Between ASP-Hosted Applications:
+
+ If the application belongs to an ASP-hosted service composed of a
+ mix of shared and customized components, identify any shared com-
+ ponents such as logging mechanisms, administrative functions, and
+ database code components.
+--------------------------------------------------------------------------------------
+
+

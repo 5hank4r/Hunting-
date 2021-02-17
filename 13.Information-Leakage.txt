@@ -1,0 +1,18 @@
+Follow Up Any Information Leakage:
+
+ If you receive any unusual error messages, investigate these 
+ using standard search engines. You can use various advanced search 
+ features to narrow down your results.
+ example:
+ “unable to retrieve” filetype:php
+
+
+ Use Google code search to locate any publicly available code that 
+ may be responsible for a particular error message.
+
+ Search for snippets of error messages that may be hard-coded into the 
+ application's source code. You can also use various advanced 
+ search features to specify the code language and other details, 
+ if these are known.
+
+ unable\ to\ retrieve lang:php package:mail

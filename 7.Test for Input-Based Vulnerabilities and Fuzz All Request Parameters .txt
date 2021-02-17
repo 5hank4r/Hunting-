@@ -1,0 +1,55 @@
+Test for Input-Based Vulnerabilities
+
+Fuzz All Request Parameters
+
+1.Test for SQL Injection:
+
+ If any database error messages were returned, investigate their meaning.
+ Use the section “SQL Syntax and Error Reference” in to help
+ interpret error messages on some common database platforms.
+
+ If submitting a single quotation mark in the parameter causes an error
+ or other anomalous behavior, submit two single quotation marks
+
+ Try using common SQL string concatenator functions to construct a string
+ that is equivalent to some benign input
+
+ ‘||’FOO
+ ‘+’FOO
+ ‘ ‘FOO
+ If the application’s logic can be systematically manipulated in this way, 
+ it is almost certainly vulnerable to SQL injection.
+--------------------------------------------------------------------------------------------
+2.Test for XSS and Other Response Injection:
+
+ Identify Refl ected Request Parameters
+ Test for Refl ected XSS
+ Test for HTTP Header Injection
+ Test for Stored Attacks
+---------------------------------------------------------------------
+3.Test for Path Traversal:
+
+ The application may be checking the fi le extension being requested
+ and allowing access to only certain kinds of fi les. Try using a null byte
+ or newline attack together with a known accepted fi le extension in an
+ attempt to bypass the fi lter. For example:
+ ../../../../../boot.ini%00.jpg
+ ../../../../../etc/passwd%0a.jpg
+
+-------------------------------------------------------------------------------------
+4.Test for Script Injection:
+
+ If the application appears to be vulnerable, verify this by injecting fur-
+ ther commands specifi c to the scripting platform in use. For example,
+ you can use attack payloads similar to those used when fuzzing for OS
+ command injection:
+system(‘ping%20127.0.0.1’)
+---------------------------------------------------------------------------------------
+5.Test for File Inclusion:
+
+ If you received any incoming HTTP connections from the target appli-
+ cation’s infrastructure during your fuzzing, the application is almost
+ certainly vulnerable to remote fi le inclusion. Repeat the relevant tests
+ in a single-threaded and time-throttled way to determine exactly which
+ parameters are causing the application to issue the HTTP requests.
+-----------------------------------------------------------------------------------------

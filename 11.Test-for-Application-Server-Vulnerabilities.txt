@@ -1,0 +1,96 @@
+Test for Application Server Vulnerabilities
+
+1.Test for Default Credentials:
+ Review the results of your application mapping exercises to identify the
+ web server and other technologies in use that may contain accessible
+ administrative interfaces.
+
+ If you gain access to an administrative interface, review the available
+ functionality and determine whether it can be used to further compro-
+ mise the host and attack the main application
+------------------------------------------------------------------------------------------------
+2.Test for Default Content:
+ Review the results of your Nikto scan to identify any default
+ content that may be present on the server but that is not an integral part
+ of the application.
+
+ Use search engines and other resources such as www.exploit-db.com and
+ www.osvdb.org to identify default content and functionality included
+ within the technologies you know to be in use.
+
+---------------------------------------------------------------------------------------
+3.Test for Dangerous HTTP Methods:
+ Use the OPTIONS method to list the HTTP methods that the server states
+ are available. Note that different methods may be enabled in different
+ directories. You can perform a vulnerability scan in Paros to perform
+ this check.
+
+ Try each reported method manually to confi rm whether it can in fact be
+ used.
+--------------------------------------------------------------------------------------------
+4.Test for Proxy Functionality:
+
+ Using both GET and CONNECT requests, try to use the web server as a
+ proxy to connect to other servers on the Internet and retrieve content
+ from them.
+
+ Using both GET and CONNECT requests, attempt to connect to common
+ port numbers on the web server itself by specifying 127.0.0.1 as the target
+ host in the request.
+
+-------------------------------------------------------------------------------------------------
+5.Test for Virtual Hosting Misconfi guration:
+ Submit GET requests to the root directory using the following:
+ The correct Host header
+ A bogus Host header
+
+ The server’s IP address in the Host header
+ No Host header (use HTTP/1.0 only)
+
+ Nikto scan using the -vhost option to identify any 
+ default content that may have been overlooked during initial 
+ application mapping.
+
+
+-------------------------------------------------------------------------------------------------
+6.Test for Web Server Software Bugs:
+  Review resources such as Security Focus, Bugtraq, and Full Disclosure
+  to fi nd details of any recently discovered vulnerabilities that may not
+  have been fi xed on your target.
+
+  If the application was developed by a third party, investigate whether it
+  ships with its own web server (often an open source server). 
+
+  If it does,investigate this for any vulnerabilities. Be aware that in this case, the
+  server’s standard banner may have been modified.
+-------------------------------------------------------------------------------------------------
+7.Test for Web Application Firewalling:
+
+ For all fuzzing strings and requests, use payload strings that are unlikely
+ to exist in a standard signature database. Although giving examples of
+ these is by defi nition impossible, avoid using /etc/passwd or /windows/
+ system32/config/sam as payloads for file retrieval. Also avoid using
+ terms such as <script> in an XSS attack and using alert() or xss as
+ XSS payloads.
+
+
+ On ASP.NET, also try submitting the parameter as a cookie. The API
+ Request.Params[“foo”] will retrieve the value of a cookie named foo
+ if the parameter foo is not found in the query string or message body.
+
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

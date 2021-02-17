@@ -1,0 +1,59 @@
+Miscellaneous Checks
+
+1.Check for DOM-Based Attacks:
+  Perform a brief code review of every piece of JavaScript received from
+  the application. Identify any XSS or redirection vulnerabilities that can
+ be triggered by using a crafted URL to introduce malicious data into
+ the DOM of the relevant page. Include all standalone JavaScript files 
+ and scripts contained within HTML pages
+
+2.Identify all uses of the following APIs, which may be used to access
+  DOM data that can be controlled via a crafted URL:
+  document.location
+  document.URL
+  document.URLUnencoded
+
+
+3.APIs, the application may be vulnerable to XSS:
+ document.write()
+ document.writeln()
+ document.body.innerHtml
+ eval()
+ window.execScript()
+ window.setInterval()
+
+-----------------------------------------------------------------------------------------
+4.Check for Local Privacy Vulnerabilities:
+ logs created by your intercepting proxy to identify all the
+ Set-Cookie directives received from the application during your testing.
+ if any of these contains an expires attribute with a date that is in
+ the future, the cookie will be stored by users’ browsers until that date.
+ Review the contents of any persistent cookies for sensitive data.
+
+ Identify any instances within the application in which sensitive data is
+ transmitted via a URL parameter. If any cases exist, examine the browser
+ history to verify that this data has been stored there.
+
+--------------------------------------------------------------------------------------
+5.Check for Weak SSL Ciphers:
+ If the application uses SSL for any of its communications, use the tool
+ THCSSLCheck to list the ciphers and protocols supported.
+
+
+ Opera browser to attempt to per-
+ form a complete handshake using specifi ed weak protocols to confi rm
+ whether these can actually be used to access the application.
+
+-----------------------------------------------------------------------------------------
+6.Check Same-Origin Policy Confi guration:
+ Test an application’s handling of cross-domain requests using
+ XMLHttpRequest by adding an Origin header specifying a different
+ domain and examining any Access-Control headers that are returned.
+ The security implications of allowing two-way access from any domain,
+ or from specifi ed other domains, are the same as those described for the
+ Flash cross-domain policy.
+
+
+
+
+

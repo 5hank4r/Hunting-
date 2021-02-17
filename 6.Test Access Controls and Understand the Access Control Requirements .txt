@@ -1,0 +1,30 @@
+Test Access Controls
+
+ Understand the Access Control Requirements
+ 
+1.Test with Multiple Accounts:
+  use a less-privileged account and attempt to access each item of this
+ functionality.
+ Using Burp, browse all the application’s content within one user
+ context.
+
+-----------------------------------------------------------------------------
+2.Test with Limited Access:
+ Many common vulnerabilities will
+ be much harder to locate, because you do not know the names of the URLs,
+ identifi ers, and parameters that are needed to exploit the weaknesses.
+
+ Decompile all compiled clients that are present, and extract any refer-
+ ences to server-side functionality.
+
+-----------------------------------------------------------------------------
+ 3.Test for Insecure Access Control Methods:
+  
+  Some applications implement access controls based on request
+  parameters in an inherently unsafe way.
+
+ Some applications base access control decisions on the HTTP Referer header. 
+ 
+ If HEAD is an allowed method on the site, test for insecure container-
+ managed access control to URLs. Make a request using the HEAD method
+ to determine whether the application permits it.

@@ -1,0 +1,40 @@
+Test for Logic Flaws
+
+1.Identify the Key Attack Surface
+ Logic fl aws can take a huge variety of forms and exist within any aspect
+ of the application’s functionality. To ensure that probing for logic fl aws
+ is feasible, you should fi rst narrow down the attack surface to a reason-
+ able area for manual testing.
+
+ Identify any instances of the following features:
+ 1. Multistage processes
+ 2.Critical security functions, such as login
+
+ 3.Transitions across trust boundaries (for example, moving from being
+  4.anonymous to being self-registered to being logged in)
+ 5.Context-based functionality presented to a user
+ 6.Checks and adjustments made to transaction prices or quantities
+
+-----------------------------------------------------------------------------------------------------
+2.Test Multistage Processes:
+ The sequence of stages may be accessed via a series of GET or POST
+ requests for distinct URLs, or they may involve submitting different
+ sets of parameters to the same URL. You may specify the stage being
+ requested by submitting a function name or index within a request
+ parameter.
+------------------------------------------------------------------------------------------
+3.Test Handling of Incomplete Input:
+ For critical security functions within the application, which involve
+ processing several items of user input and making a decision based on
+ these, test the application’s resilience to requests containing incomplete
+ input.
+----------------------------------------------------------------------------------------
+4.Test Transaction Logic:
+ the application imposes transaction limits, test the
+ effects of submitting negative values. If these are accepted, it may be
+ possible to beat the limits by making large transactions in the opposite
+ direction.
+
+
+
+

@@ -1,0 +1,68 @@
+Test the Session Management Mechanism 
+
+ 
+1.Test Tokens for Meaning:
+ Log in as several different users at different times, and record the tokens
+ received from the server. If self-registration is available and you can choose
+ your username.
+ Analyze the tokens you receive for any correlations that appear to be
+ related to the username and other user-controllable data.
+----------------------------------------------------------------------------
+2.Test Tokens for Predictability:
+ If you identify any patterns, capture a second sample of tokens using
+ a different IP address and a different username. This will help you
+ identify whether the same pattern is detected and whether tokens
+ received in the fi rst exercise could be extrapolated to guess tokens
+ received in the second.
+------------------------------------------------------------------------------------
+3.Check for Insecure Transmission of Tokens:
+
+ starting with unauthenticated
+ content at the start URL, proceeding through the login process, and
+ then going through all the application’s functionality.
+
+
+4.If HTTP cookies are being used as the transmission mechanism for session tokens, 
+ verify whether the secure fl ag is set, preventing them from
+ ever being transmitted over HTTP connections.
+
+ If the HTTPS area of the application contains any links to HTTP URLs,
+ follow these and verify whether the session token is submitted. If it is,
+ determine whether it continues to be valid or is immediately terminated
+ by the server.
+------------------------------------------------------------------------------------
+5.Check for Disclosure of Tokens in Logs:
+
+ If they are intended for administrators only, determine 
+ whether any other vulnerabilities exist
+ that could enable a lower-privileged user to access them.
+ Identify any instances where session tokens are transmitted within the
+ URL.If so, these may be transmitted in
+ the Referer header when users follow any off-site links.
+----------------------------------------------------------------------------------
+6.Check Mapping of Tokens to Sessions:
+
+ Log in and log out several times using the same user account, either from
+ different browser processes or from different computers. Determine
+ whether a new session token is issued each time, or whether the same
+ token is issued every time the same account logs in.
+ In this situation,there is no way to protect against concurrent logins or
+ properly enforce session timeout.
+
+-------------------------------------------------------------------------------------
+7.Check for CSRF:
+ If the application relies solely on HTTP cookies as its method of trans-
+ mitting session tokens, it may be vulnerable to cross-site request forgery
+ attacks.
+-------------------------------------------------------------------------------------
+8.Check Cookie Scope:
+ If the application uses HTTP cookies to transmit session tokens (or
+ any other sensitive data), review the relevant Set-Cookie headers, and
+ check for any domain or path attributes used to control the scope of the
+ cookies.
+------------------------------------------------------------------------
+
+
+
+
+

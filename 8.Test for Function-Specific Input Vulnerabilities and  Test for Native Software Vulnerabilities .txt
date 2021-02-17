@@ -1,0 +1,75 @@
+Test for Function-Specific Input Vulnerabilities
+1.Test for SMTP Injection:
+ For each request employed in e-mail–related functionality, submit each
+ of the following test strings as each parameter in turn, inserting your
+ own e-mail address at the relevant position.
+
+ You can use Burp Intruder
+ to automate this, as described for general fuzzing. These test
+ strings already have special characters URL-encoded, so do not apply
+ any additional encoding to them.
+ <youremail>%0aCc:<youremail>
+ <youremail>%0d%0aCc:<youremail>
+ %0aDATA%0afoo%0a%2e%0aMAIL+FROM:+<youremail>%0aRCPT+TO:+<youremail>
+
+ Review the results to identify any error messages the application returns.
+ -----------------------------------------------------------------------------------------
+ Test for Native Software Vulnerabilities:
+ 1.Test for Buffer Overflows
+ 2.Test for Integer Vulnerabilities
+ 3.Test for Format String Vulnerabilities
+------------------------------------------------------------------------------------------
+
+2.Test for SOAP Injection:
+ Target each parameter in turn that you suspect is being processed via
+ a SOAP message. Submit a rogue XML closing tag, such as </foo> . If
+ no error occurs, your input is probably not being inserted into a SOAP
+ message or is being sanitized in some way.
+
+ SOAP message, which
+ may change the application’s logic or result in a different error condition
+ that may divulge information.
+--------------------------------------------------------------------------------------------------
+3.Test for LDAP Injection:
+ Submit the * character. If a large number of results are returned, this is
+ a good indicator that you are dealing with an LDAP query.
+
+ Try entering a number of closing parentheses:
+ ))))))))))
+
+ Having extracted the name of the parent node, use a series of conditions
+ with the following form to extract all the data within the XML tree:
+ substring(//parentnodename[position()=1]/child::node()[position()=1]
+ /text(),1,1)=’a
+
+-------------------------------------------------------------------------------------------
+4.Test for Back-End Request Injection:
+ Target a request parameter that returns a specifi c page for a specifi c
+ value, and try to append a new injected parameter using various syntax,
+ including the following:
+
+ %26foo%3dbar (URL-encoded &foo=bar )
+ %3bfoo%3dbar (URL-encoded ;foo=bar )
+ %2526foo%253dbar (Double URL-encoded &foo=bar )
+
+ If the application behaves as if the original parameter wee unmodified,
+ there is a chance of HTTP parameter injection vulnerabilities.
+--------------------------------------------------------------------------------------
+5.Test for XXE Injection:
+
+ If users are submitting XML to the server, an external entity injection
+ attack may be possible. If a fi eld is known that is returned to the user,
+ attempt to specify an external entity, as in the following example:
+
+ POST /search/128/AjaxSearch.ashx HTTP/1.1
+ Host: mdsec.net
+ Content-Type: text/xml; charset=UTF-8
+ Content-Length: 115
+ <!DOCTYPE foo [ <!ENTITY xxe SYSTEM “file:///windows/win.ini” > ]>
+ <Search><SearchTerm>&xxe;</SearchTerm></Search>
+
+
+“http://192.168.1.1:25” and monitor the page response time.
+
+
+
